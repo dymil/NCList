@@ -72,6 +72,10 @@ int main(int argc, char * const argv[]) {
 
 	GArgs args(argc, argv, "hTo:");
 	args.printError(usage.c_str(), true);
+	if (args.getOpt('h')) {
+		cout << usage;
+		exit(EXIT_SUCCESS);
+	}
 
 	bool doNCLorITT = !args.getOpt('T');
 	//bool doNCLorITT = true;
@@ -85,7 +89,7 @@ int main(int argc, char * const argv[]) {
 //		exit(EXIT_FAILURE);
 //	}
 
-	if(args.startNonOpt()!=2) {
+	if (args.startNonOpt()!=2) {
 		std::cerr << "Only " << args.startNonOpt() << " arguments provided (expected 2)" << "\n";
 		//print usage here?
 		exit(EXIT_FAILURE);
