@@ -1,5 +1,5 @@
 RM = rm -f
-GCLIB := ../gclib 
+GCLIB := ../gclib
 INC := -I$(GCLIB)
 CC := g++
 LDFLAGS =
