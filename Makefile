@@ -18,8 +18,8 @@ endif
 
 LINKER  := g++
 LIBS := 
-OBJS := ../gclib/GBase.o ../gclib/gdna.o ../gclib/codons.o \
- ../gclib/GFaSeqGet.o ../gclib/gff.o interval_tree.o ../gclib/GArgs.o
+OBJS := $(INC)/GBase.o $(INC)/gdna.o $(INC)/codons.o \
+ $(INC)/GFaSeqGet.o $(INC)/gff.o interval_tree.o $(INC)/GArgs.o
 
 .PHONY : all
 all:    mapped_nc
