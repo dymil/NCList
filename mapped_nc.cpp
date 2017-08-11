@@ -72,7 +72,7 @@ int main(int argc, char * const argv[]) {
 	const char* o_file = args.getOpt('o') ? args.getOpt('o') : "mapped_ov.tab";
 
 	if(args.startNonOpt()!=2) {
-		std::cerr << "Only " << args.startNonOpt() << " arguments provided (expected 2)";
+		std::cerr << "Only " << args.startNonOpt() << " arguments provided (expected 2)" << "\n";
 		//print usage here?
 		exit(EXIT_FAILURE);
 	}
