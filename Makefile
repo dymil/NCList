@@ -1,6 +1,6 @@
 RM = rm -f
-
-INC := -I../gclib
+GCLIB := ../gclib
+INC := -I$(GCLIB)
 CC := g++
 LDFLAGS =
 BASEFLAGS := -std=c++11 $(INC) -Wall -Wextra -D_REENTRANT -fno-exceptions -fno-rtti
@@ -18,8 +18,8 @@ endif
 
 LINKER  := g++
 LIBS := 
-OBJS := $(INC)/GBase.o $(INC)/gdna.o $(INC)/codons.o \
- $(INC)/GFaSeqGet.o $(INC)/gff.o interval_tree.o $(INC)/GArgs.o
+OBJS := $(GCLIB)/GBase.o $(GCLIB)/gdna.o $(GCLIB)/codons.o \
+ $(GCLIB)/GFaSeqGet.o $(GCLIB)/gff.o interval_tree.o $(GCLIB)/GArgs.o
 
 .PHONY : all
 all:    mapped_nc
