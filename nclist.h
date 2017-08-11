@@ -48,6 +48,7 @@ class NCList {
 		}
 	};
 
+	//could be protected
 	//stores vectors (would be std::array or std::tuple) of {first_index, length} of sublists
 	//h_list[0] refers to top-level
 	std::vector<H_list_el> h_list;
@@ -106,7 +107,6 @@ class NCList {
 		return a.getEnd()<b;
 	}
 
-	//should be more general actually, perhaps just take start and end
 	void overlaps(const CInterval& query, std::vector<CInterval>& res) const{
 		overlaps(query.getStart(), query.getEnd(), res);
 	}
