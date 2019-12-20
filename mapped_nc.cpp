@@ -62,7 +62,7 @@ std::vector<qInterval> readQueries(std::istream& input) { //RVO should make this
 	return queries;
 }
 
-int main(int argc, char * const argv[]) {
+int main(int argc, char * argv[]) {
 //	const std::string usage=std::string("Usage: ")+argv[0]+"\n";
 	const std::string usage = std::string("Positional arguments:\n")+
 			"<input_gff>	reference file in GFF format\n"+
