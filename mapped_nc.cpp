@@ -17,7 +17,7 @@
 #include "GBase.h"
 #include "gff.h"
 #include "GArgs.h"
-#include "nclist.h"
+#include "nclist.hpp"
 #include "interval_tree.h"
 
 using std::cout;
