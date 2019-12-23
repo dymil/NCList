@@ -33,7 +33,7 @@ class NCList {
 		static bool cmp(const TaggedInterval& a, const TaggedInterval& b){
 			return a.sub_id<b.sub_id;
 		}
-		bool operator<(CInterval& o) { //I should be nice and implement the other operators... this does the OL order per paper
+		bool operator<(const CInterval& o) const { //I should be nice and implement the other operators... this does the OL order per paper
 			return (this->getStart()==o.getStart())?(this->getEnd()>o.getEnd()):(this->getStart()<o.getStart());
 		}
 	};
