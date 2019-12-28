@@ -88,12 +88,12 @@ class NCList {
 		std::stable_sort(l_list.begin(), l_list.end(), TaggedInterval::cmp); //dunno if stable is necessary
 		int curr_idx=0, l_start_idx=0, num_intervals=0;
 		for (int i = 0; i<(int)l_list.size(); ++i){
-			if (l_list[i].sub_id==curr_idx) {
+			if (l_list[i].sub_id == curr_idx) {
 				++num_intervals;
 			} else {
 				++curr_idx;
-				l_start_idx=i;
-				num_intervals=1;
+				l_start_idx = i;
+				num_intervals = 1;
 			}
 
 			h_list[curr_idx].set(l_start_idx, num_intervals); // can do this part in-place probably, like no need for temp variables
@@ -110,8 +110,8 @@ class NCList {
 	}
 
 	void overlaps(uint start, uint end, std::vector<CInterval>& res, int h_idx=0) const {
-		if (h_idx==-1) return;
-		int subend = h_list[h_idx].L_start_idx+h_list[h_idx].num_intervals;
+		if (h_idx == -1) return;
+		int subend = h_list[h_idx].L_start_idx + h_list[h_idx].num_intervals;
 		typename std::vector<TaggedInterval>::const_iterator it = std::lower_bound(l_list.begin()+h_list[h_idx].L_start_idx, l_list.begin()+subend, start, compEnd);
 		while (it-l_list.begin()<subend && it->getStart() <= end){ //i.e., while overlap
 			res.push_back(*it);
@@ -122,13 +122,13 @@ class NCList {
 
 	void printNC() const {
 		std::cout << "H: [";
-		for(typename std::vector<H_list_el>::const_iterator it=h_list.begin(); it!=h_list.end(); ++it){
+		for(typename std::vector<H_list_el>::const_iterator it=h_list.begin(); it!=h_list.end(); ++it) {
 			std::cout << "(" << it-> L_start_idx << ", " << it->num_intervals << ")" << (it!=h_list.end()-1?", ":"");
 		}
 		std::cout << "]\n";
 
 		std::cout << "L: [";
-		for(typename std::vector<TaggedInterval>::const_iterator it = l_list.begin(); it!=l_list.end(); ++it){
+		for(typename std::vector<TaggedInterval>::const_iterator it = l_list.begin(); it!=l_list.end(); ++it) {
 			std::cout<<"("<< it->getStart()<< ", "<< it->getEnd() << ", "<< it->H_idx<<", "<<it->sub_id << ")"<<(it!=l_list.end()-1?", ":"");
 		}
 		std::cout << "]\n";
