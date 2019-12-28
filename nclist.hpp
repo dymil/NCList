@@ -25,12 +25,12 @@ class NCList {
 		//use size_type instead of int??????
 		int H_idx; //-1 per paper, tells us where children live in h_list!
 		int sub_id; //where (parent) sublist is in H, top-level is 0
-		TaggedInterval(): H_idx(-1), sub_id(-1){}
+		TaggedInterval(): H_idx(-1), sub_id(-1) {}
 		TaggedInterval(const CInterval& c): CInterval(c), H_idx(-1), sub_id(-1) {}
 		bool contains(const CInterval& i) const {
 			return this->getStart()<=i.getStart() && i.getEnd()<this->getEnd();
 		}
-		static bool cmp(const TaggedInterval& a, const TaggedInterval& b){
+		static bool cmp(const TaggedInterval& a, const TaggedInterval& b) {
 			return a.sub_id<b.sub_id;
 		}
 		bool operator<(const CInterval& o) const { //I should be nice and implement the other operators... this does the OL order per paper
@@ -42,7 +42,7 @@ class NCList {
 		int L_start_idx;
 		int num_intervals;
 		H_list_el(int idx=0, int n=0): L_start_idx(idx), num_intervals(n){}
-		void set(int a, int b){
+		void set(int a, int b) {
 			L_start_idx=a;
 			num_intervals=b;
 		}
@@ -60,9 +60,9 @@ class NCList {
 		//copy stuff to l_list, there should be a way to accomplish this "tagging" without wrapping and copying :/
 		//maybe with that composition not inheritance thing
 		l_list.reserve(in.size());
-		for (typename std::vector<CInterval>::const_iterator it=in.begin(); it!=in.end(); ++it){
+		for (typename std::vector<CInterval>::const_iterator it=in.begin(); it!=in.end(); ++it)
 			l_list.push_back(*it);
-		}
+
 		h_list.push_back(H_list_el()); //blank to offset
 		std::sort(l_list.begin(), l_list.end());
 		std::stack<TaggedInterval> parents; //could be CInterval, but is that any more efficient?
@@ -83,16 +83,14 @@ class NCList {
 				h_list.push_back(H_list_el());
 				it->H_idx=h_indices.top();
 			}
-
 		}
 
 		std::stable_sort(l_list.begin(), l_list.end(), TaggedInterval::cmp); //dunno if stable is necessary
 		int curr_idx=0, l_start_idx=0, num_intervals=0;
 		for (int i = 0; i<(int)l_list.size(); ++i){
-			if (l_list[i].sub_id==curr_idx){
+			if (l_list[i].sub_id==curr_idx) {
 				++num_intervals;
-			}
-			else {
+			} else {
 				++curr_idx;
 				l_start_idx=i;
 				num_intervals=1;
@@ -103,11 +101,11 @@ class NCList {
 	}
 
 	//so sketchy
-	static bool compEnd(const CInterval& a, uint b){
+	static bool compEnd(const CInterval& a, uint b) {
 		return a.getEnd()<b;
 	}
 
-	void overlaps(const CInterval& query, std::vector<CInterval>& res) const{
+	void overlaps(const CInterval& query, std::vector<CInterval>& res) const {
 		overlaps(query.getStart(), query.getEnd(), res);
 	}
 
